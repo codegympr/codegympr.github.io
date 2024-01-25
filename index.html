@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,10 @@
     <title>Code Gym - Educación en Programación y Código</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="your-custom-style.css">
+    <script src="/htmx.min.js"></script>
+
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Main navigation">
@@ -16,7 +20,8 @@
                     <img src="CodeGymLogo.png" alt="CodeGymPR Logo" style="height: 40px;">
                     Code Gym
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -34,23 +39,44 @@
     <main>
         <section id="about" class="container mt-4">
             <h2>Quiénes Somos</h2>
-            <p>Code Gym es una organización sin fines de lucro dedicada a la educación en programación y código en Puerto Rico. Nuestra misión es empoderar a las comunidades locales mediante la enseñanza de habilidades tecnológicas vitales, preparándolas para los desafíos del futuro digital.</p>
+            <p>Code Gym es una organización sin fines de lucro dedicada a la educación en programación y código en
+                Puerto Rico. Nuestra misión es empoderar a las comunidades locales mediante la enseñanza de habilidades
+                tecnológicas vitales, preparándolas para los desafíos del futuro digital.</p>
         </section>
 
         <section id="programs" class="container mt-4">
             <h2>Programas</h2>
-            <p>Descripción general de los programas y talleres ofrecidos, dirigidos a diferentes grupos de edad y niveles de habilidad.</p>
+            <ul class="nav nav-tabs">
+                <li class="nav-item" hx-get="/programs/category1" hx-target="#programDetails" hx-trigger="click">
+                    <a class="nav-link active" href="#">Category 1</a>
+                </li>
+                <!-- more categories -->
+            </ul>
+            <div id="programDetails">
+                <!-- Program details will be loaded here -->
+            </div>
         </section>
 
         <section id="donate" class="container mt-4">
             <h2>Donar</h2>
-            <p>Información sobre cómo las donaciones apoyan a la organización y enlace para donar, por ejemplo, a través de PayPal.</p>
-            <a href="https://www.paypal.com/donate/?hosted_button_id=MRRELNH4X4H3Y" target="_blank" class="btn btn-primary">Donar Ahora</a>
+            <p>Información sobre cómo las donaciones apoyan a la organización y enlace para donar, por ejemplo, a través
+                de PayPal.</p>
+            <a href="https://www.paypal.com/donate/?hosted_button_id=MRRELNH4X4H3Y" class="btn btn-primary"
+                hx-get="/donation-thanks" hx-target="#donationStatus" hx-trigger="click">Donar Ahora</a>
+            <div id="donationStatus">
+                <!-- A thank you message or additional information could load here after clicking -->
+            </div>
         </section>
 
         <section id="contact" class="container mt-4 mb-4">
             <h2>Contacto</h2>
-            <p>Detalles sobre cómo ponerse en contacto con Code Gym, incluyendo correo electrónico, teléfono y redes sociales.</p>
+            <form hx-post="/submit-contact-form" hx-target="#formStatus" hx-swap="outerHTML">
+                <!-- Form fields -->
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+            <div id="formStatus">
+                <!-- Response after form submission will be displayed here -->
+            </div>
         </section>
     </main>
 
@@ -58,10 +84,11 @@
         <div class="container p-4">
             <div class="row">
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">CodeGymPR</h5>
-                    <p>Comprometidos con la promoción de habilidades en programación y tecnología en Puerto Rico. Únete a nuestra misión para empoderar a través de la educación tecnológica.</p>
+                    <h5 class="text-uppercase">Code Gym</h5>
+                    <p>Comprometidos con la promoción de habilidades en programación y tecnología en Puerto Rico. Únete
+                        a nuestra misión para empoderar a través de la educación tecnológica.</p>
                 </div>
-                
+
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Enlaces</h5>
                     <ul class="list-unstyled mb-0">
@@ -76,7 +103,9 @@
                     <h5 class="text-uppercase">Contacto</h5>
                     <ul class="list-unstyled">
                         <li><a href="mailto:info@codegympr.org" class="text-dark">info@codegympr.org</a></li>
-                        <li><p class="text-dark">Teléfono: +1 787-123-4567</p></li>
+                        <li>
+                            <p class="text-dark">Teléfono: +1 787-123-4567</p>
+                        </li>
                         <!-- Add social media links if available -->
                     </ul>
                 </div>
@@ -92,4 +121,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
